@@ -22,6 +22,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import tallestegg.guardvillagers.configuration.GuardConfig;
 import tallestegg.guardvillagers.entities.Guard;
+import net.minecraft.world.AxeItem;
+import net.minecraft.world.BowItem;
 
 @Mod.EventBusSubscriber(modid = GuardVillagers.MODID)
 public class VillagerToGuard {
@@ -30,7 +32,7 @@ public class VillagerToGuard {
         Player player = event.getEntity();
         ItemStack itemstack = event.getEntity().getMainHandItem();
         Entity target = event.getTarget();
-        if ((itemstack.getItem() instanceof SwordItem || itemstack.getItem() instanceof CrossbowItem) && player.isCrouching()) {
+        if ((itemstack.getItem() instanceof SwordItem || itemstack.getItem() instanceof CrossbowItem || itemstack.getItem() instanceof BowItem || itemstack.getItem() instanceof AxeItem) && player.isCrouching()) {
             if (target instanceof Villager villager) {
                 if (!villager.isBaby()) {
                     if (villager.getVillagerData().getProfession() == VillagerProfession.NONE || villager.getVillagerData().getProfession() == VillagerProfession.NITWIT) {
